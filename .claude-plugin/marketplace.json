@@ -1,0 +1,12 @@
+{
+  "name": "zyte",
+  "owner": {
+    "name": "Zyte Group Ltd"
+  },
+  "plugins": [
+    {
+      "name": "scrape",
+      "source": "./"
+    }
+  ]
+}
