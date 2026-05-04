@@ -3,6 +3,9 @@
   "owner": {
     "name": "Zyte Group Ltd"
   },
+  "metadata": {
+    "description": "Clade Code marketplace for web scraping."
+  },
   "plugins": [
     {
       "name": "scrape",
