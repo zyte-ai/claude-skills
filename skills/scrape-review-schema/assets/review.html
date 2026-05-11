@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schema Review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="mono">
+  <header>
+    <div class="header-left">
+      <span class="header-label">Review</span>
+      <nav id="view-toggle">
+        <button class="active" data-view="field">Fields</button>
+        <button data-view="page">Pages</button>
+      </nav>
+    </div>
+    <div class="header-right">
+      <button id="header-request-changes" class="hidden">Request changes</button>
+      <button id="header-approve" class="hidden">Approve</button>
+      <button id="header-copy">Copy</button>
+      <div id="feedback-trigger">
+        <span id="feedback-link">feedback<span id="feedback-count-badge"></span></span>
+        <span class="header-dim">to the agent</span>
+        <div id="feedback-dropdown" class="hidden">
+          <div id="feedback-list"></div>
+          <textarea id="feedback-text" readonly></textarea>
+        </div>
+      </div>
+      <div id="theme-switcher">
+        <button id="theme-btn" title="Theme">&#9681;</button>
+        <div id="theme-menu" class="hidden"></div>
+      </div>
+    </div>
+  </header>
+
+  <div id="main">
+    <aside id="sidebar"></aside>
+    <section id="content"></section>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="review.js"></script>
+</body>
+</html>

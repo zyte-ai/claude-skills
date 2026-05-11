@@ -1,14 +1,14 @@
 {
-  "name": "zyte",
+  "name": "zyte-ai",
   "owner": {
     "name": "Zyte Group Ltd"
   },
   "metadata": {
-    "description": "Clade Code marketplace for web scraping."
+    "description": "Zyte Coding Agent Add-Ons marketplace for Claude Code."
   },
   "plugins": [
     {
-      "name": "scrape",
+      "name": "zyte-web-data",
       "source": "./"
     }
   ]

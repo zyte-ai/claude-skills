@@ -1,12 +1,12 @@
-# Claude Code marketplace for web scraping
+# Claude Skills
 
 ## Install
 
 In a terminal, run:
 
 ```bash
-claude plugin marketplace add zytedata/claude-marketplace
-claude plugin install scrape@zyte
+claude plugin marketplace add zyte-ai/claude-skills
+claude plugin install zyte-web-data@zyte-ai
 ```
 
 If you have an open session in some other terminal, run:
@@ -25,7 +25,7 @@ We recommend that you enable automatic updates:
 To update manually, update the marketplace:
 
 ```bash
-claude plugin marketplace update zytedata/claude-marketplace
+claude plugin marketplace update zyte-ai/claude-skills
 ```
 
 And then, in a Claude Code session, run:
@@ -43,7 +43,7 @@ picked up automatically.
 
 For example:
 
-> Scrape titles and prices from https://books.toscrape.com/
+> Scrape https://books.toscrape.com/
 
 ## Evaluation
 
