@@ -34,6 +34,8 @@ Agent(description="explore-site", prompt="Run /scrape-explore-site {url} .scrape
 
 This downloads the start page + 3 detail pages + 2 list pages, classifies links, and generates navigation values. All output goes to `.scrape/.work/{site_name}/explore/`.
 
+If the subagent reports that the site is blocked, invoke `/scrape-zyte-login`. After it returns, **re-run** the `scrape-explore-site` subagent above. Only proceed once exploration succeeds.
+
 Then distribute pages to the right data-type subfolders:
 ```bash
 mkdir -p {site_path}/{data_type}/pages {site_path}/navigation/pages {site_path}/navigation/values

@@ -52,7 +52,15 @@ If the file exists skip step 3 and proceed directly to step 4.
 
 **Get the project ID**
 
-Open the Zyte projects page in the browser so the user can locate or create a Scrapy Cloud project:
+Check for a saved project ID from a previous `scrape-zyte-login`:
+
+```bash
+cat .scrape/.zyte/project-id 2>/dev/null || echo "(not set)"
+```
+
+If present, use it and skip asking.
+
+Otherwise, open the Zyte projects page:
 
 ```bash
 xdg-open "https://app.zyte.com/o/projects/" 2>/dev/null || open "https://app.zyte.com/o/projects/"
@@ -76,12 +84,13 @@ ls requirements.txt pyproject.toml Pipfile 2>/dev/null | head -1
 
 **Specify a Scrapy stack**
 
-Use the Docker Hub API or scrape the tags page to find the most recent stack tag for the `scrapinghub/scrapinghub-stack-scrapy` repository:
+Use the Docker Hub API or scrape the tags page to find the most recent stack tag for the `scrapinghub/scrapinghub-stack-scrapy` repository that matches the Scrapy version in the requirements file:
 
 * API endpoint: `https://hub.docker.com/v2/repositories/scrapinghub/scrapinghub-stack-scrapy/tags`
 * Web page: `https://hub.docker.com/r/scrapinghub/scrapinghub-stack-scrapy/tags`
 
 Tags follow the format `{VERSION}-{YYYYMMDD}` (e.g. `2.14-20260326`). Select the tag with the highest version number and, among equal versions, the latest frozen date. Use that tag as the `stack` value in `scrapinghub.yml`, prefixed with `scrapy:` (e.g. `scrapy:2.14-20260326`).
+If the requirements file is missing or doesn't specify a Scrapy version, use the latest tag overall.
 
 **Write scrapinghub.yml**
 
@@ -148,15 +157,15 @@ Run your spiders at: https://app.zyte.com/p/12345/
 
 **On failure**, diagnose the error and fix before retrying:
 
-- `Error: Not logged in. Please run 'shub login' first.` → not authenticated; run `shub login` or set `SHUB_APIKEY`.
+- `Error: Not logged in. Please run 'shub login' first.` → not authenticated; invoke `/scrape-zyte-login`.
 - `Error: Invalid value for target: Please specify target or configure a default target in scrapinghub.yml.` → no project ID configured; ask the user for a project ID, update `scrapinghub.yml` and retry.
-- `Authentication error` / `403` → API key is wrong or missing; re-run step 1.
+- `Authentication error` / `403` → API key is wrong or missing; invoke `/scrape-zyte-login`.
 - `Project N does not exist` → wrong project ID; correct `scrapinghub.yml` and retry.
 - `Could not find requirements file` → the `requirements.file` path in `scrapinghub.yml` is wrong; fix the path and retry.
 - `No module named scrapy` or build errors → a dependency is missing or incompatible with the selected stack; update the requirements file and retry.
 - Any other error → show the full error message to the user and ask how to proceed.
 
-### 6. Report success
+### 5. Report success
 
 Confirm the deployment and show the project link:
 

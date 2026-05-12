@@ -61,7 +61,7 @@ Agent(description="explore-site initial", prompt="Run /scrape-explore-site {targ
 
 This downloads the homepage + 1 detail page into `.scrape/.work/{site_name}/explore/pages/`.
 
-If the site is blocked, suggest Zyte. Only invoke `/scrape-zyte-signup` if the user agrees.
+If the site is blocked, suggest Zyte. Only invoke `/scrape-zyte-login` if the user agrees. After it returns, re-run the `scrape-explore-site` subagent above.
 
 ## Step 3: Analyze the detail page
 
